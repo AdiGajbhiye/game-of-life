@@ -1,20 +1,18 @@
-import { Component, For } from "solid-js";
+import { Component, For, Signal } from "solid-js";
 import { Cell } from "../Cell";
 import styles from "./styles.module.css";
 
-const temp = [
-  [0, 0, 0],
-  [0, 0, 0],
-  [0, 0, 0],
-];
+interface Props {
+  board: Signal<boolean>[][];
+}
 
-const Body: Component = () => {
+const Body: Component<Props> = (props) => {
   return (
     <div class={styles.Body}>
-      <For each={temp}>
+      <For each={props.board}>
         {(row) => (
           <div class={styles.Row}>
-            <For each={row}>{() => <Cell />}</For>
+            <For each={row}>{(cell) => <Cell cell={cell} />}</For>
           </div>
         )}
       </For>

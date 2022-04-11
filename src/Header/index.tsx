@@ -1,8 +1,11 @@
-import type { Component } from "solid-js";
+import type { Accessor, Component } from "solid-js";
 import styles from "./styles.module.css";
 
-const Header: Component = () => {
-  return <div class={styles.Header}>This is header</div>;
+interface Props {
+  tick: Accessor<number>;
+}
+const Header: Component<Props> = (props) => {
+  return <div class={styles.Header}>Tick: {props.tick}</div>;
 };
 
 export { Header };
